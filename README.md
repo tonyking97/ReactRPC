@@ -147,12 +147,15 @@ const services = require("helloworld_grpc_web_pb.js")
 ​
 const URL = "http://" + window.location.hostname + ":8080"
 ​
-googleRPC.build(messages, services, URL)
+const googleRPCservice = new googleRPC();
+​
+googleRPCservice.build(messages, services, URL)
+​
 ```
 Export the googleRPC component by passing it as an argument into the reactRPC wrapper as follows:
 ​
 ```javascript
-export default googleRPC.wrapper(<your component>);
+export default googleRPCservice.wrapper(<your component>);
 ```
 ​
 ## Improbable's Implementation
@@ -165,14 +168,16 @@ const services = require("book_service_pb_service.js")
 ​
 const URL = "http://" + window.location.hostname + ":8080"
 ​
-improbRPC.build(messages, services, URL)
+const improbRPCservice = new improbRPC();
+​
+improbRPCservice.build(messages, services, URL)
 ​
 ```
 ​
 Export the improbRPC component by passing it as an argument into the improbRPC wrapper as follows:
 ​
 ```javascript
-export default improbRPC.wrapper(<your component>);
+export default improbRPCservice.wrapper(<your component>);
 ```
 ​
 ## 5. Define a message
