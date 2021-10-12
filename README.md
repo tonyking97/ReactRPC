@@ -3,8 +3,15 @@
 ![badge](https://img.shields.io/badge/build-passing-green?labelColor=444444)
 ![badge](https://img.shields.io/badge/license-Apache--2.0-green)
 ​
+
 Full featured integration library for React and gRPC-Web. Core functions include: packaging the generated proto messages and client stubs, a unified API of gRPC call methods that support Google's and Improbable's gRPC-web specs for unary, client streaming, server streaming and bi-directional streaming. 
 ​
+
+## Note
+The Following improvement are done here, which is not there in parent repo. 
+- Fixed an issue with array of objects serialization.
+- Added support for using multiple gRPC services. (Now you can create an object for every services and wrap it together)
+
 # Getting Started
 ## Install
 ``` 
