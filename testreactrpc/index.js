@@ -208,18 +208,25 @@ function serialize(data, messages) {
     if (data.hasOwnProperty(prop) && prop !== "msgType") {
       //If data is an array we need to do a for loop and recursively turn each element into a message object to add
       if (Array.isArray(data[prop])) {
-        //find the addElement key
-        let newKey =
-          "add" + toPascalCase(prop);
-        //If addElement method is undefined throw Error saying cannot find the proper method
-        //Otherwise loop through array and add all the elements to the method
-        if (newMessage[newKey] !== undefined) {
-          for (let el of data[prop]) {
-            let val = serialize(data[prop][el], messages);
-            newMessage[newKey](val);
+        let newKey = "add" + prop[0].toUpperCase() + prop.slice(1).toLowerCase();
+        if (typeof data === "object") {
+          if (newMessage[newKey] !== undefined) {
+            for (let el of data[prop]) {
+              let val = serialize(el, messages);
+              newMessage[newKey](val);
+            }
+          } else {
+            throw new Error("Message field is invalid: " + prop);
           }
         } else {
-          throw new Error("Message field is invalid: " + prop);
+          if (newMessage[newKey] !== undefined) {
+            for (let el of data[prop]) {
+              let val = serialize(data[prop][el], messages);
+              newMessage[newKey](val);
+            }
+          } else {
+            throw new Error("Message field is invalid: " + prop);
+          }
         }
       } else {
         //Otherwise we just set the field with the value of the property
